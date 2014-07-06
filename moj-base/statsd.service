@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# 
+if [ -z "$GRAPHITE_SERVER" ]; then 
+  echo "No graphite server defined - skipping" > /var/log/statsd.service
+  chmod 000 /etc/service/statsd/run
+  exit 1
+fi 
+
+ENV=${ENV:-env}
+PROJECT=${PROJECT}:-project}
+APPHOST=${APPHOST:-apphost}
+# Run Config script
+cat <<EOT > /etc/statsd.conf
+{
+  graphitePort: 2003,
+  graphiteHost: "$GRAPHITE_SERVER",
+  port: 8125,
+  graphite: {
+    legacyNamespace: false,
+    globalPrefix: "stats.$PROJECT.$ENV.$APPHOST"
+  },
+  backends: [ "./backends/graphite" ]
+}
+EOT
+
+exec /usr/bin/statsd /etc/statsd.conf > /var/log/statsd.service 2>&1
+

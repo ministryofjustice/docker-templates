@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# 
+if [ -z "$LOGSTASH_SERVER" ]; then 
+  echo "No logstash server defined - skipping" > /var/log/logstash-forwarder
+  chmod 000 /etc/service/logstash/run
+  exit 1
+fi 
+
+# Setup LOGSTASH config file
+if [ ! -f "/etc/logstash-forwarder.sh" ]; then
+  echo "No logstash-forwarder config - skipping" > /var/log/logstash-forwarder
+  chmod 000 /etc/service/logstash/run
+  exit 1
+fi
+
+# Run Config script
+bash /etc/logstash-forwarder.sh > /tmp/logstash-forwarder.conf
+exec /opt/logstash-forwarder/bin/logstash-forwarder -config /tmp/logstash-forwarder.conf > /var/log/logstash-forwarder 2>&1
+
+
+###
+### Example logstash forwarder script for local container
+###
+
+# cat <<EOT
+# {
+#   "network": {
+#    "servers": [ "$LOGSTASH_SERVER" ],
+#    "timeout": 15
+#  },
+#  "files": [
+#    {
+#      "paths": [ "/tmp/feeds/fifofeed" ],
+#      "fields": { "type": "stdin" }
+#    }
+#  ]
+#}
+#EOT
+
