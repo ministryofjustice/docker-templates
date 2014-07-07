@@ -8,7 +8,7 @@ if [ -z "$GRAPHITE_SERVER" ]; then
 fi 
 
 ENV=${ENV:-env}
-PROJECT=${PROJECT}:-project}
+PROJECT=${PROJECT:-project}
 APPHOST=${APPHOST:-apphost}
 # Run Config script
 cat <<EOT > /etc/statsd.conf
