@@ -11,10 +11,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN echo "deb [arch=amd64] http://repo1.dsd.io precise main" > /etc/apt/sources.list.d/dsd.list
 RUN apt-get update
 
-RUN apt-get install -y --force-yes --no-install-recommends dsd-ruby2.1-bundler
-
-# install deps
-RUN apt-get install -y wget git golang ruby ruby-dev rubygems irb ri rdoc build-essential libopenssl-ruby1.9.1 libssl-dev zlib1g-dev
+RUN apt-get install -y --force-yes --no-install-recommends dsd-ruby2.1-bundler libyaml-0-2 libxslt1.1 libpq5
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
