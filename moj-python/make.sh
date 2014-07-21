@@ -16,7 +16,7 @@ else
   TAG="${DOCKERREPO}/${DOCKERTAG}"
 fi
 
-docker build -t ${TAG} --force-rm=true .
+docker build -t ${TAG} --rm=true .
 
 if [ -z "$DOCKER_NOPUSH" ]; then
   echo "+ docker push ${TAG}"

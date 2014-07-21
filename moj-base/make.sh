@@ -4,7 +4,7 @@ DOCKER_NOPUSH=true
 DOCKER_NORMI=true
 
 DEFAULT_DOCKERREPO="docker.local:5000"
-DEFAULT_DOCKERTAG="moj-base-rails"
+DEFAULT_DOCKERTAG="moj-base"
 
 DOCKERFILE="docker/rails/Dockerfile"
 DOCKERREPO="${DOCKERREPO:-$DEFAULT_DOCKERREPO}"
@@ -16,7 +16,7 @@ else
   TAG="${DOCKERREPO}/${DOCKERTAG}"
 fi
 
-docker build -t ${TAG} --force-rm=true .
+docker build -t ${TAG} --rm=true .
 
 if [ -z "$DOCKER_NOPUSH" ]; then
   echo "+ docker push ${TAG}"
