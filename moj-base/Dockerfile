@@ -12,7 +12,9 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 914D5813
 RUN echo "deb http://ppa.launchpad.net/gds/govuk/ubuntu precise main" > /etc/apt/sources.list.d/gds-govuk-precise.list
 RUN apt-get update
 
-RUN apt-get install -y --force-yes statsd
+# We need netcat-traditional if we want to generate a metric from the command line
+# The default netcat hangs when UDP transport is specified
+RUN apt-get install -y --force-yes statsd netcat-traditional
 
 ###
 ### Add logstash-forwarder
