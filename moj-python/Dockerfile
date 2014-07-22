@@ -1,5 +1,5 @@
 # Use last baseimage from ubuntu-14.04
-FROM docker.local:5000/moj-base
+FROM moj-base
 
 # Set correct environment variables.
 ENV HOME /root

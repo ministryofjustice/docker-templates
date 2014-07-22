@@ -1,6 +1,8 @@
 # Use last baseimage from ubuntu-12.04
 FROM moj-base:latest
 
+RUN apt-get update
+
 # Set correct environment variables.
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
