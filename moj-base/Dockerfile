@@ -1,15 +1,24 @@
-# Use last baseimage from ubuntu-12.04
-FROM phusion/baseimage:0.9.9
+# Use last baseimage from ubuntu-14.04
+FROM phusion/baseimage:0.9.12
 
 # Set correct environment variables.
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 
 ###
-### Added ruby 2.0
+### Add DS package repo
+###
+RUN echo "deb [arch=amd64] http://repo1.dsd.io precise main" > /etc/apt/sources.list.d/dsd.list
+
+###
+### Add GDS package repo
 ###
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 914D5813 
 RUN echo "deb http://ppa.launchpad.net/gds/govuk/ubuntu precise main" > /etc/apt/sources.list.d/gds-govuk-precise.list
+
+###
+### apt-get update
+###
 RUN apt-get update
 
 # We need netcat-traditional if we want to generate a metric from the command line
