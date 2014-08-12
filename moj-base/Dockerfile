@@ -1,5 +1,4 @@
-# Use last baseimage from ubuntu-12.04
-FROM phusion/baseimage:0.9.9
+FROM phusion/baseimage:0.9.12
 
 # Set correct environment variables.
 ENV HOME /root
