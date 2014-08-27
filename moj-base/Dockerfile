@@ -15,6 +15,9 @@ RUN apt-get update
 # The default netcat hangs when UDP transport is specified
 RUN apt-get install -y --force-yes statsd netcat-traditional
 
+# Fix broken path to so that 'env node' works again
+RUN ln -s /usr/bin/nodejs /usr/bin/node
+
 ###
 ### Add logstash-forwarder
 ###
