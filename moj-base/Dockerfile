@@ -11,6 +11,9 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 914D5813
 RUN echo "deb http://ppa.launchpad.net/gds/govuk/ubuntu precise main" > /etc/apt/sources.list.d/gds-govuk-precise.list
 RUN apt-get update
 
+# Ensure the bash is the latest version
+RUN apt-get upgrade bash
+
 # We need netcat-traditional if we want to generate a metric from the command line
 # The default netcat hangs when UDP transport is specified
 RUN apt-get install -y --force-yes statsd netcat-traditional
@@ -21,6 +24,10 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node
 ###
 ### Add logstash-forwarder
 ###
+wget -O /tmp/go1.3.linux-amd64.tar.gz http://golang.org/dl/go1.3.linux-amd64.tar.gz 
+tar -C /usr/local -xzf /tmp/go1.3.linux-amd64.tar.gz
+echo 'export PATH=/usr/local/go/bin:\$PATH' > /etc/profile.d/golang.sh
+
 ADD logstash-forwarder_0.3.1_amd64.deb /tmp/logstash-forwarder_0.3.1_amd64.deb
 RUN dpkg -i /tmp/logstash-forwarder_0.3.1_amd64.deb
 ADD certs /etc/certs
