@@ -12,7 +12,7 @@ RUN echo "deb http://ppa.launchpad.net/gds/govuk/ubuntu precise main" > /etc/apt
 RUN apt-get update
 
 # Ensure the bash is the latest version
-RUN apt-get upgrade bash
+RUN apt-get upgrade -y bash
 
 # We need netcat-traditional if we want to generate a metric from the command line
 # The default netcat hangs when UDP transport is specified
