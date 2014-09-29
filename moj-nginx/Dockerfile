@@ -8,5 +8,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
 RUN apt-get install -y nginx
 
+# Ensure the logs can be reached by logstash
+RUN chmod 755 /var/log/nginx 
+
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
