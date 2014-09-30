@@ -14,7 +14,7 @@ RUN echo 'deb http://packages.elasticsearch.org/logstash/1.4/debian stable main'
 RUN apt-get update -qq
 
 # Ensure the bash is the latest version
-RUN apt-get upgrade -y bash
+RUN apt-get install --only-upgrade bash
 
 # We need netcat-traditional if we want to generate a metric from the command line
 # The default netcat hangs when UDP transport is specified
