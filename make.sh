@@ -1,13 +1,8 @@
 
 CWD=`pwd`
 
-cd $CWD/moj-base
-docker build -t moj-base .
-
-cd $CWD/moj-nginx
-docker build -t moj-nginx .
-
-cd $CWD/moj-ruby
-docker build -t moj-ruby .
-
+for img in moj-base moj-nginx moj-ruby moj-peoplefinder; do
+	cd $CWD/$img
+	docker build -t $img .
+done
 
