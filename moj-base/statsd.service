@@ -3,7 +3,7 @@
 # 
 if [ -z "$GRAPHITE_SERVER" ]; then 
   echo "No graphite server defined - skipping" > /var/log/statsd.service
-  chmod 000 /etc/service/statsd/run
+  sv down statsd
   exit 1
 fi 
 

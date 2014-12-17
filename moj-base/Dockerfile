@@ -33,5 +33,8 @@ ADD statsd.service /etc/service/statsd/run
 RUN chmod +x /etc/service/logstash/run
 RUN chmod +x /etc/service/statsd/run
 
+# add example logstash configuration
+ADD logstash-conf.sh /etc/logstash-conf.sh
+
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
