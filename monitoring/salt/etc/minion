@@ -1,0 +1,32 @@
+id: master
+master: localhost
+
+file_roots:
+  base:
+    - /srv/salt
+    - /srv/salt/_libs
+    - /srv/salt/_vendor
+
+
+pillar_roots:
+  base:
+    - /srv/pillar
+
+
+pillar_opts: True
+
+
+peer:
+  .*:
+    - .*
+
+state_events: False
+
+file_client: local
+
+mine_functions:
+  network.ip_addrs: []
+  network.interfaces: []
+  disk.usage: []
+
+mine_interval: 1

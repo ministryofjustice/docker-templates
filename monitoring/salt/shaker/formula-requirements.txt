@@ -1,0 +1,1 @@
+git@github.com:ministryofjustice/monitoring-formula.git==v1.0.3
