@@ -19,13 +19,9 @@ RUN adduser $WEBUSER --home /usr/src/app --shell /bin/bash --disabled-password -
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-# SSH auth socket to proxy private traffic
-ENV SSH_AUTH_SOCK /tmp/ssh-auth
-# SSH proxy port
-ENV SSH_AUTH_PROXY_PORT 1234
-
 ONBUILD COPY Gemfile /usr/src/app/
 ONBUILD COPY Gemfile.lock /usr/src/app/
+ONBUILD COPY vendor/bundle /usr/src/app/vendor/bundle
 ONBUILD RUN bundle install --jobs 4 --retry 3
 
 ONBUILD COPY . /usr/src/app
