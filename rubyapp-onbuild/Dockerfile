@@ -22,7 +22,7 @@ WORKDIR /usr/src/app
 ONBUILD COPY Gemfile /usr/src/app/
 ONBUILD COPY Gemfile.lock /usr/src/app/
 ONBUILD COPY vendor/bundle /usr/src/app/vendor/bundle
-ONBUILD RUN bundle install --jobs 4 --retry 3
+ONBUILD RUN bundle install
 
 ONBUILD COPY . /usr/src/app
 ONBUILD RUN mkdir /usr/src/app/public/assets
