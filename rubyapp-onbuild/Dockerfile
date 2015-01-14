@@ -1,6 +1,6 @@
 FROM ruby:2.1.5
 
-RUN apt-get update && apt-get install -y runit apt-transport-https && \
+RUN apt-get update && apt-get install -y runit socat apt-transport-https && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && rm -fr *Release* *Sources* *Packages* && \
     truncate -s 0 /var/log/*log
@@ -19,10 +19,15 @@ RUN adduser $WEBUSER --home /usr/src/app --shell /bin/bash --disabled-password -
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+# SSH proxy settings
+ENV SSH_AUTH_SOCK /tmp/ssh-auth
+ENV SSH_AUTH_PROXY_PORT 1234
+
 ONBUILD COPY Gemfile /usr/src/app/
 ONBUILD COPY Gemfile.lock /usr/src/app/
-ONBUILD COPY vendor/bundle /usr/src/app/vendor/bundle
-ONBUILD RUN bundle install
+
+# Hack to install private gems
+ONBUILD RUN socat UNIX-LISTEN:$SSH_AUTH_SOCK TCP4:$(ip route|awk '/default/ {print $3}'):$SSH_AUTH_PROXY_PORT & bundle install --jobs 4 --retry 3
 
 ONBUILD COPY . /usr/src/app
 ONBUILD RUN mkdir /usr/src/app/public/assets
