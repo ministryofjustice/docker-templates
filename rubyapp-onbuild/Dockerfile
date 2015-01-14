@@ -27,7 +27,7 @@ ONBUILD COPY Gemfile /usr/src/app/
 ONBUILD COPY Gemfile.lock /usr/src/app/
 
 # Hack to install private gems
-ONBUILD RUN socat UNIX-LISTEN:$SSH_AUTH_SOCK TCP4:$(ip route|awk '/default/ {print $3}'):$SSH_AUTH_PROXY_PORT & bundle install --jobs 4 --retry 3
+ONBUILD RUN socat UNIX-LISTEN:$SSH_AUTH_SOCK TCP4:$(ip route|awk '/default/ {print $3}'):$SSH_AUTH_PROXY_PORT & bundle install
 
 ONBUILD COPY . /usr/src/app
 ONBUILD RUN mkdir /usr/src/app/public/assets
