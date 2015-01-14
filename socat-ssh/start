@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+DOCKERIFC=$(ip -o -4 addr list docker0 | awk '{print $4}' | cut -d/ -f1)
+
+socat -d -d TCP4-LISTEN:$SSH_AUTH_PROXY_PORT,fork,bind=$(DOCKERIFC) UNIX-CLIENT:$SSH_AUTH_SOCK
