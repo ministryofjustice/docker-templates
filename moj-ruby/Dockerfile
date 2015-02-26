@@ -15,4 +15,4 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends dsd-ruby2.1-bundler libyaml-0-2 libxslt1.1 libpq5
 
 # Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get autoclean && apt-get autoremove && rm -rf /var/lib/{apt,dpkg,cache,log}/ && rm -rf /tmp/* /var/tmp/*
