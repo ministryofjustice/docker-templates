@@ -12,8 +12,7 @@ RUN echo "deb [arch=amd64] http://repo.dsd.io trusty main" > /etc/apt/sources.li
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6929455C
 RUN apt-get update
 
-RUN apt-get install -y --no-install-recommends dsd-ruby2.1-bundler libyaml-0-2 libxslt1.1 libpq5 git
-RUN gem install bundler
+RUN apt-get install -y --no-install-recommends dsd-ruby2.1-bundler libyaml-0-2 libxslt1.1 libpq5
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
