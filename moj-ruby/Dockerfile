@@ -13,6 +13,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6929455C
 RUN apt-get update
 
 RUN apt-get install -y --no-install-recommends dsd-ruby2.1-bundler libyaml-0-2 libxslt1.1 libpq5
+RUN gem install bundler
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
