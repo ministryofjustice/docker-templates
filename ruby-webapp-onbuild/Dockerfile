@@ -6,6 +6,7 @@ RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 
 # install runit and nodejs
 RUN apt-get update && apt-get install -y runit nodejs && \
+    apt-get -y install qt5-default libqt5webkit5-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && rm -fr *Release* *Sources* *Packages* && \
     truncate -s 0 /var/log/*log
@@ -26,4 +27,4 @@ ONBUILD RUN socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork TCP4:$(ip route|awk '/default/
 ONBUILD COPY . /usr/src/app
 ONBUILD RUN mkdir /usr/src/app/public/assets
 
-CMD ["bundle", "exec"]
+CMD ["bundle", "exec", "--without", "development", "test"]
