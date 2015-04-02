@@ -5,7 +5,7 @@ ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 
 ###
-### Added ruby 2.0
+### Added ruby 2.2
 ###
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 914D5813 
 RUN echo "deb http://ppa.launchpad.net/gds/govuk/ubuntu precise main" > /etc/apt/sources.list.d/gds-govuk-precise.list

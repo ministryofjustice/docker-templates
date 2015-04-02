@@ -6,7 +6,7 @@ ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 
 ###
-### Added ruby 2.0
+### Added ruby 2.2
 ###
 RUN echo "deb [arch=amd64] http://repo.dsd.io trusty main" > /etc/apt/sources.list.d/dsd.list
 RUN apt-get update
