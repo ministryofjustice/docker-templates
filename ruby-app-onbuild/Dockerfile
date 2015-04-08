@@ -1,4 +1,4 @@
-FROM ministryofjustice/ruby:2.1.5
+FROM ministryofjustice/ruby:2
 
 # SSH proxy settings
 ENV SSH_AUTH_SOCK /tmp/ssh-auth
