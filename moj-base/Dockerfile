@@ -21,9 +21,6 @@ RUN apt-get install --only-upgrade bash
 RUN apt-get install -y  openjdk-7-jre-headless
 RUN apt-get install -y --force-yes statsd netcat-traditional logstash
 
-# Fix broken path to so that 'env node' works again
-RUN ln -s /usr/bin/nodejs /usr/bin/node
-
 # Ensure logstash user is member of adm group so it can read logs in /var/log
 RUN usermod -a -G adm logstash
 
