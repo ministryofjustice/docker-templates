@@ -30,6 +30,4 @@ ONBUILD RUN /bin/bash -c "if [ -x /usr/src/app/pre-bundle.sh ];\
 ONBUILD RUN socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork TCP4:$(ip route|awk '/default/ {print $3}'):$SSH_AUTH_PROXY_PORT & bundle install
 ONBUILD COPY . /usr/src/app
 
-ONBUILD RUN mkdir /usr/src/app/public/assets
-
 CMD ["bundle", "exec"]
