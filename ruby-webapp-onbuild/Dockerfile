@@ -15,6 +15,7 @@ ENV SSH_AUTH_SOCK /tmp/ssh-auth
 ENV SSH_AUTH_PROXY_PORT 1234
 
 RUN mkdir -p /usr/src/app
+RUN bundle config --global without test:development
 WORKDIR /usr/src/app
 
 ONBUILD COPY Gemfile /usr/src/app/
