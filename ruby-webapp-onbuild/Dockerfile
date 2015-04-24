@@ -21,10 +21,15 @@ WORKDIR /usr/src/app
 ONBUILD COPY Gemfile /usr/src/app/
 ONBUILD COPY Gemfile.lock /usr/src/app/
 
+ONBUILD COPY *.sh /usr/src/app/
+ONBUILD RUN /bin/bash -c "if [ -x /usr/src/app/pre-bundle.sh ];\
+                          then \
+                              /usr/src/app/pre-bundle.sh;\
+                          fi"
 # Hack to install private gems
 ONBUILD RUN socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork TCP4:$(ip route|awk '/default/ {print $3}'):$SSH_AUTH_PROXY_PORT & bundle install
-
 ONBUILD COPY . /usr/src/app
+
 ONBUILD RUN mkdir /usr/src/app/public/assets
 
 CMD ["bundle", "exec"]
