@@ -7,6 +7,11 @@ This repo contains Dockerfiles for basing project specific docker images from.
 `./make.sh` in the top level directory will build all the images contained in
 this repo
 
+Passing a parameter will also allow pushing the images to a local registry. 
+For example, to build and push images to the local repository
+docker.local:5000, 
+
+`./make.sh docker.local:5000`
 
 # Using images on other hosts
 
