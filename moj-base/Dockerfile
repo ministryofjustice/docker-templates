@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ###
 ### Added ruby 2.2
 ###
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 914D5813 
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 914D5813
 RUN echo "deb http://ppa.launchpad.net/gds/govuk/ubuntu precise main" > /etc/apt/sources.list.d/gds-govuk-precise.list
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D88E42B4
 RUN echo 'deb http://packages.elasticsearch.org/logstash/1.4/debian stable main' > /etc/apt/sources.list.d/logstash.list
@@ -20,9 +20,6 @@ RUN apt-get install --only-upgrade bash
 # The default netcat hangs when UDP transport is specified
 RUN apt-get install -y  openjdk-7-jre-headless
 RUN apt-get install -y --force-yes statsd netcat-traditional logstash
-
-# Fix broken path to so that 'env node' works again
-RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 # Ensure logstash user is member of adm group so it can read logs in /var/log
 RUN usermod -a -G adm logstash
