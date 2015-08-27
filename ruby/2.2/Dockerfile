@@ -1,4 +1,4 @@
-FROM ruby:2
+FROM ruby:2.2
 
 # install socat to proxy SSH traffic for private repos
 RUN apt-get update && apt-get install -y socat apt-transport-https && \
