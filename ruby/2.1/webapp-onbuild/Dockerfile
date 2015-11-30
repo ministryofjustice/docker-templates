@@ -16,10 +16,10 @@ ENV SSH_AUTH_PROXY_PORT 1234
 
 RUN mkdir -p /usr/src/app
 RUN bundle config --global without test:development
-WORKDIR /usr/src/app
+WORKDIR /tmp
 
-ONBUILD COPY Gemfile /usr/src/app/
-ONBUILD COPY Gemfile.lock /usr/src/app/
+ONBUILD COPY Gemfile /tmp/
+ONBUILD COPY Gemfile.lock /tmp/
 
 # Hack to install private gems
 ONBUILD RUN socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork TCP4:$(ip route|awk '/default/ {print $3}'):$SSH_AUTH_PROXY_PORT & bundle install
@@ -27,4 +27,5 @@ ONBUILD RUN socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork TCP4:$(ip route|awk '/default/
 ONBUILD COPY . /usr/src/app
 ONBUILD RUN mkdir -p /usr/src/app/public/assets
 
+WORKDIR /usr/src/app
 CMD ["bundle", "exec"]
