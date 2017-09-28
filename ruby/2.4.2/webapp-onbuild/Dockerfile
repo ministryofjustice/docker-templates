@@ -6,16 +6,14 @@ RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 
 # install runit and nodejs
 RUN apt-get update && apt-get install -y runit nodejs && \
-    apt-get clean && \
+    apt-get clean && mkdir -p /usr/src/app && bundle config --global without test:development && \
     rm -rf /var/lib/apt/lists/* && rm -fr *Release* *Sources* *Packages* && \
     truncate -s 0 /var/log/*log
 
 # SSH proxy settings
-ENV SSH_AUTH_SOCK /tmp/ssh-auth
-ENV SSH_AUTH_PROXY_PORT 1234
+ENV SSH_AUTH_SOCK="/tmp/ssh-auth" SSH_AUTH_PROXY_PORT="1234"
 
-RUN mkdir -p /usr/src/app
-RUN bundle config --global without test:development
+
 WORKDIR /usr/src/app
 
 ONBUILD COPY Gemfile /usr/src/app/
