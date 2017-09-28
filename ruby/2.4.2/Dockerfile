@@ -10,6 +10,10 @@ RUN apt-get update && apt-get install -y socat apt-transport-https && \
 RUN bundle config --global frozen 1
 # Don't use any gems installed into the system. This makes the gem tree standalone
 RUN bundle config --global disable_shared_gems 1
+# Install multiple gems in parallel ( 4 in this case ) to speed up image build
+RUN bundle config --global jobs 4
+# Disable installation & generation of RDOC / RI ( speed up and decrease size )
+RUN echo "gem: --no-rdoc --no-ri" > /etc/gemrc
 
 # Add Githubs public keys into known_hosts
 RUN mkdir $HOME/.ssh && touch /root/.ssh/known_hosts && ssh-keyscan github.com >> /root/.ssh/known_hosts
