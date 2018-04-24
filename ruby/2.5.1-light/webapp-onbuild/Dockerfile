@@ -1,6 +1,6 @@
 FROM ruby:2.5.1-light
 
-RUN apk update && apk add nodejs socat build-base libxml2-dev libxslt-dev postgresql-dev
+RUN apk update && apk add nodejs socat build-base libxml2-dev libxslt-dev postgresql-dev ttf-freefont fontconfig tzdata
 
 RUN mkdir -p /usr/src/app
 RUN bundle config --global without test:development
