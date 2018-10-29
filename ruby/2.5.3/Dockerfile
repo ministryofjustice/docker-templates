@@ -1,8 +1,7 @@
 FROM ruby:2.5.3
 
 # install socat to proxy SSH traffic for private repos
-RUN apt-get update && apt-get install -y socat apt-transport-https && \
-    apt-get clean && \
+RUN apt-get update && apt-get install -y socat apt-transport-https && apt-get clean && \
     rm -rf /var/lib/apt/lists/* && rm -fr *Release* *Sources* *Packages* && \
     truncate -s 0 /var/log/*log
 
