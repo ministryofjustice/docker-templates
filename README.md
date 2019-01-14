@@ -67,24 +67,7 @@ To push an image to a custom registry you have to tag it with `url/name`, i.e. f
     Sending image list
     Pushing repository docker.local:5000/moj-base (1 tags)
     Image 511136ea3c5a already pushed, skipping
-    Image 6170bb7b0ad1 already pushed, skipping
-    Image 9cd978db300e already pushed, skipping
-    Image a6d44c263269 already pushed, skipping
-    Image 13e42d0c2a51 already pushed, skipping
-    Image 846e143f3fab already pushed, skipping
-    Image 10ebd1d649cb already pushed, skipping
-    Image 5db917407faa already pushed, skipping
-    Image 745d3ac92697 already pushed, skipping
-    Image 500139ddf0f2 already pushed, skipping
-    Image 21011cbe82f5 already pushed, skipping
-    Image df6ce4b2220c already pushed, skipping
-    Image bbd7f7c7a1c8 already pushed, skipping
-    Image 70a6686e2931 already pushed, skipping
-    Image c2a12e177930 already pushed, skipping
-    Image 3936f5b49e7a already pushed, skipping
-    Image d8db88c5e2af already pushed, skipping
-    Image 5f6afed93afb already pushed, skipping
-    Image c9343965fd20 already pushed, skipping
+    (...)
     Image 964d2994056f already pushed, skipping
     0334c0cadc94: Image successfully pushed
     4dfac303cd8a: Image successfully pushed
