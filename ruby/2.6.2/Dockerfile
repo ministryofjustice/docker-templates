@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y socat apt-transport-https && apt-get cl
     rm -rf /var/lib/apt/lists/* && rm -fr *Release* *Sources* *Packages* && \
     truncate -s 0 /var/log/*log
 
+RUN gem install bundler
 # Throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
 # Don't use any gems installed into the system. This makes the gem tree standalone
