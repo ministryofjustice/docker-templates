@@ -1,3 +1,20 @@
+# DEPRECATION WARNING
+
+2020-01-30
+
+Use of these docker images/templates is not recommended for any new/migrating
+services.
+
+The code in this repository is not being actively maintained.
+
+The images in this repository are quite "heavyweight", and rely on ONBUILD
+triggers which make it harder to understand exactly what is going on.
+
+Instead, it is recommended that you try to keep your Dockerfiles and docker
+images as lightweight and simple as possible, e.g. by starting with the alpine
+version of the standard image for your development language (for example, `FROM
+ruby:2.6.2-alpine`), and only adding what you actually need.
+
 # MoJ Docker Templates
 
 This repo contains Dockerfiles for basing project specific docker images from.
